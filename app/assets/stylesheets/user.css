@@ -1,0 +1,55 @@
+#dashboard {
+  margin-top: 60px;
+}
+
+.card-header h4, .card-header h5 {
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.dashboard-button {
+  margin-bottom: 10px;
+}
+
+.card.dashboard-card {
+  margin-bottom: 15px;
+}
+
+h2.wecome-back {
+  color: white;
+  margin: 40px 0 20px 0;
+  text-align: center;
+}
+
+.dashboard-button {
+  margin-top: 10px;
+}
+
+.dashboard-card:last-child {
+  margin-bottom: 100px
+}
+
+.dashboard-card .card-block {
+  padding: 0.9rem;
+}
+
+.dashboard-card .card-header {
+  padding: 0.5rem 1rem
+}
+
+.card.insurance-card h5 {
+  font-size: 0.8rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.card.dashboard-card {
+  cursor: pointer;
+}
+
+.card.dashboard-card i {
+  float: right;
+  font-size: 1.4rem;
+}

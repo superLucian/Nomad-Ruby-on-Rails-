@@ -1,0 +1,165 @@
+!!!
+%html{xmlns: "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{content: "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width", name: "viewport"}/
+    :css
+      *{
+        margin-top:0px;
+        margin-bottom:0px;
+        padding:0px;
+        border:none;
+        line-height:normal;
+        outline:none;
+        list-style:none;
+        font-family:Helvetica, Arial, sans-serif;
+        -webkit-text-size-adjust:none;
+      }
+      body{
+        margin-top:0 !important;
+        margin-bottom:0 !important;
+        padding-top:0 !important;
+        padding-bottom:0 !important;
+        width:100% !important;
+        -webkit-text-size-adjust:100% !important;
+        -ms-text-size-adjust:100% !important;
+        -webkit-font-smoothing:antialiased !important;
+      }
+      img{
+        border:0 !important;
+        outline:none !important;
+      }
+      table{
+        border-collapse:collapse;
+        mso-table-lspace:0px;
+        mso-table-rspace:0px;
+      }
+      td{
+        border-collapse:collapse;
+        mso-line-height-rule:exactly;
+      }
+      .ExternalClass *,
+      .ExternalClass p, 
+      .ExternalClass span, 
+      .ExternalClass font, 
+      .ExternalClass td, 
+      .ExternalClass div{
+        line-height:100%;
+      }
+      span{
+        border-collapse:collapse;
+        mso-line-height-rule:exactly;
+      }
+      .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{
+        line-height:100%;
+      }
+      .desc_links a{
+        color:#1799d5 !important;
+        text-decoration:none !important;
+      }
+      .button_link a{
+        color:#333333 !important;
+        text-decoration:none !important;
+      }
+      @media only screen and (max-width: 480px){
+        table[class=full]{
+          width:100% !important;
+        }
+        td[class=hide]{
+          display:none !important;
+        }
+        td[class=sides]{
+          width:15px !important;
+        }
+        td[class=heights]{
+          height:25px !important;
+        }
+        td[class=padding_top]{
+          padding-top:15px !important;
+        }
+        td[class=paddings]{
+          padding-left:10px !important;
+          padding-right:10px !important;
+        }
+        .sizefix{
+          width:100% !important;
+        }
+        .sizefix img{
+          width:100% !important;
+          display:block !important;
+        }
+      } 
+
+      @media only screen and (min-width: 480px) and (max-width: 599px){
+        table[class=full]{
+          width:100% !important;
+        }
+        td[class=hide]{
+          display:none !important;
+        }
+        td[class=sides]{
+          width:15px !important;
+        }
+        td[class=heights]{
+          height:25px !important;
+        }
+        td[class=padding_top]{
+          padding-top:15px !important;
+        }
+        td[class=paddings]{
+          padding-left:10px !important;
+          padding-right:10px !important;
+        }
+        .sizefix{
+          width:100% !important;
+        }
+        .sizefix img{
+          width:100% !important;
+          display:block !important;
+        }
+      }  
+  %body{bgcolor: "#fbfbfb", leftmargin: "0", marginheight: "0", marginwidth: "0", offset: "0", style: "font-family:Helvetica, Arial, sans-serif; color:#000000; margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-font-smoothing: antialiased;", topmargin: "0"}
+    %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+      %tr
+        %td.paddings{bgcolor: "#fbfbfb"}
+          %table.full{align: "center", border: "0", cellpadding: "0", cellspacing: "0", style: "width:100%;margin:0"}
+            %tr
+              %td{bgcolor: "#ffffff"}
+                %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+                  %tr
+                    %td.heights{bgcolor: "#fbfbfb", height: "0"}
+                  %tr
+                    %td
+                      %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+                        %tr
+                          %td
+                            %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+                              %tr
+                                %td
+                                  %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+                                    %tr
+      
+                                      %td
+                                        %table{border: "0", cellpadding: "0", cellspacing: "0", width: "100%"}
+                                          %tr
+                                            %td{"mc:edit" => "logs1", style: "font-family: Helvetica, Arial, sans-serif; font-size:16px; line-height:19px; color:#333333; text-transform:uppercase; font-weight:bold;"}
+                                          = yield(:head)
+                                          %tr
+                                            %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+                                              = yield(:footer)
+                                          = yield(:optional)
+                                          %tr
+                                            %td.button_link{"mc:edit" => "logs8906", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:blue"}
+                                              %a{href: "mailto:help@nomadcredit.com", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:blue !important; text-align:center; text-decoration:underline;", target: "_blank"} help@nomadcredit.com
+                                          %tr
+                                            %td
+                                              %span.sizefix
+                                                %a{href: root_url, target: "_blank"}
+                                                  %img{alt: "Nomad", border: "0", "mc:edit" => "logs", src: "https://s3-us-west-2.amazonaws.com/unifi-production/static/nomad.jpg", style: "display:block;margin-top:5px;margin-bottom:10px", width: "10%"}/
+
+                                  / %br
+                                  /   %a{href: "*|UNSUB|*", style: "font-family: Helvetica, Arial, sans-serif; font-size:10px; line-height:17px; color:#3f3260; text-align:center; text-decoration:underline;", target: "_blank"} Unsubscribe
+
+                        %tr
+                          %td{height: "12", style: "font-size:0px; line-height:0px;"}
+    %img{ url: "http://www.google-analytics.com/collect?v=1&tid=UA-853611455-1&t=event&ec=email&ea=open&cs=transaction&cm=email&cn=#{@ga_campaign}"}                        

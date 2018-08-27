@@ -1,0 +1,81 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-10.offset-md-1
+        %h2.wecome-back Recommended Partners
+        .row
+          .col-md-10.offset-md-1
+            .card
+              .card-block
+                .row
+                  .col-md-10.offset-md-1
+
+                    %p{style: 'margin:20px 0 10px 0;text-align:center;font-size:18px'} 
+                    %p{style: 'margin-bottom:30px'}
+                      Please see our recommended partners listed by product below. Click "Select" next to the partner you would like to choose. You will then be taken to the partner’s site where you can get additional information and submit an application on their site. Need help? Please email any questions to
+                      %a{ href: "mailto:help@nomadcredit.com"}help@nomadcredit.com.
+        %br
+        %br
+        .row
+          .col-md-10.offset-md-1
+            %ul.nav.nav-tabs.flex-column.flex-sm-row{role: "tablist"}
+              - @likely_offers.keys.each_with_index do |application_type,index|
+                %li.nav-item.flex-sm-fill.text-sm-center
+                  - if index == 0
+                    %a.nav-link.active{ "data-toggle" => "tab", href: "##{application_type}", role: "tabpanel"}
+                      = application_type.titleize
+                  - else
+                    %a.nav-link{ "data-toggle" => "tab", href: "##{application_type}", role: "tabpanel"}
+                      = application_type.titleize
+
+            - likely_offers_index = 0
+            .tab-content                                        
+              - @likely_offers.each do |application_type, offers|
+                - likely_offers_index += 1
+                .tab-pane{id: "#{application_type}", role: "tabpanel", class: "#{likely_offers_index <= 1 ? 'active' : ''}"}
+                  - offers.each do |application_offer|
+                    - offer = application_offer.offer
+                    .card{style: 'margin-bottom:40px;'}
+                      .card-header{ style: 'background-color: white;text-align:center;'}
+                        - if offer.logo.present?
+                          = image_tag offer.logo.url, height: "60px"
+                        - else
+                          %h3= offer.company_name
+                      .card-block
+                        .offers-table
+                          .row
+                            .col-md-12
+                              - if offer.company_name
+                                .row.offer-row
+                                  .col-xs-12.col-sm-12.col-md-5
+                                    %strong 
+                                      Partner
+                                  .col-xs-12.col-sm-12.col-md-7= simple_format offer.company_name                        
+                              - if offer.description
+                                .row.offer-row
+                                  .col-xs-12.col-sm-12.col-md-5
+                                    %strong Description:
+                                  .col-xs-12.col-sm-12.col-md-7= simple_format offer.description
+                              .row
+                                .col-md-12{style: 'text-align:center'}
+                                  = link_to 'SELECT', offer_clicked_path(Application.last) + "?offer_id=#{offer.id}&likely=true", onclick: "gaOutboundLink('likelyOfferSelect" + "-#{offer.company_name.strip}" + "','" + offer_clicked_path(Application.last) + "?offer_id=#{offer.id}&likely=true" + "'); return false", class: 'btn btn-success offer-select-btn'
+
+
+        .row
+          .col-md-12{style: 'text-align:center'} 
+            %div{style: 'text-align:center;margin-top:30px;margin-bottom:50px'} 
+              %a{href: dashboard_path, class: 'btn btn-success', style: 'padding: 8px 40px;margin-top:0px'}
+                Return to Dashboard to Search
+                %br.mobile-break
+                for Other Product Options
+            %br
+            %br
+            %br
+                
+:javascript 
+  $(function(){
+    $(".col-md-7 p").each(function(i, obj){
+      var newText = $(obj).html().autoLink({target: "_blank"});
+      $(obj).html(newText);
+    })
+  })

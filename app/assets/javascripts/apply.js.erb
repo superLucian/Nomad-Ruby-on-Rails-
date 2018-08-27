@@ -1,0 +1,111 @@
+   $(function(){
+     if ($(".alert").text().trim() == '') {
+      $(".alert").hide(); 
+    } else {
+      $(".alert").show(); 
+    }
+
+    if ($("#application_citizenship_status").val() != "Visa") {
+      $("#application_visa_type").attr("validate", "false");
+    } 
+    if ($("#application_citizenship_status").val() == "US Citizen") {
+      $("#application_home_country").attr("validate", "false");
+    }
+
+    $('[date="true"]').datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "-70:+00",
+    });
+
+    $("#application_citizenship_status").on("change", function(){
+      if ($(this).val() == "Visa") {
+        $("#application_home_country").attr("validate", "true");
+        $("#application_visa_type").attr("validate", "true");
+      } else if ($(this).val() == "US Citizen") {
+        $("#application_home_country").attr("validate", "false");
+        $("#application_visa_type").attr("validate", "false");
+      } else {
+        $("#application_home_country").attr("validate", "true");
+        $("#application_visa_type").attr("validate", "false");
+      }
+      markRequired();
+    })
+
+    markRequired();
+
+    window.sequence = {
+      "basic-info": { next: "cosigner-info"}, 
+      "cosigner-info": { prev: "basic-info", next: "contact-info"},
+      "contact-info": { prev: "cosigner-info", next: "education-info"},
+      "education-info": { prev: "contact-info", next: "financial-info"}, 
+      "financial-info": { prev: "education-info"}
+    }
+
+    // $("#application_phone_number")
+    //   .intlTelInput({
+    //     utilsScript: "<%= asset_path('intlTelutils.js') %>",
+    //     autoPlaceholder: true,
+    //     initialCountry: $("#application_phone_country_code").val(),
+    //     separateDialCode: false,
+    //     nationalMode: false,
+    //     preferredCountries: ['us']
+    // });
+
+    // $("#application_cosigner_phone_number")
+    //   .intlTelInput({
+    //     utilsScript: "<%= asset_path('intlTelutils.js') %>",
+    //     autoPlaceholder: true,
+    //     initialCountry: $("#application_cosigner_phone_country_code").val(),
+    //     preferredCountries: ['us']
+    // });
+
+
+
+    $(".back-btn").on("click", function(){
+      var current = $(".active-section").attr("id");
+      var prev = window.sequence[current].prev;
+      while (window.sequence[prev].hide) {
+        prev = window.sequence[prev].prev;
+      }
+      $(".active-section").hide();
+      $(".active-section").removeClass("active-section");
+      $("#" + prev).addClass("active-section");
+      $("#" + prev).show();
+      $("html, body").animate({ scrollTop: 0 }, "fast");
+    })
+
+    $(".continue-btn").on("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if (fieldsOnPageValid()) {
+        var hasCosigner = $("[name='application[has_cosigner]']:checked").val()     
+        window.sequence["cosigner-info"].hide = (hasCosigner == 'no' || hasCosigner == undefined);
+
+        var current = $(".active-section").attr("id");
+
+        if (current == "financial-info" || $(".active-section").attr("id") == undefined) {
+          var phone_country_code = $("#application_phone_number").siblings(".flag-container").find(".selected-flag").find(".iti-flag").attr("class")
+          var cosigner_phone_country_code = $("#application_cosigner_phone_number").siblings(".flag-container").find(".selected-flag").find(".iti-flag").attr("class")      
+          $("#application_phone_country_code").val(phone_country_code && phone_country_code.split(" ")[1])
+          $("#application_cosigner_phone_country_code").val(cosigner_phone_country_code && cosigner_phone_country_code.split(" ")[1]    )
+
+          $("form").submit();
+        } else {
+          if (current) {
+            var next = window.sequence[current].next;
+            while (window.sequence[next].hide) {
+              next = window.sequence[next].next;
+            }
+          }
+        }
+        $(".active-section").hide();
+        $(".active-section").removeClass("active-section");
+        $("#" + next).addClass("active-section");
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+        $("#" + next).show();
+      } else {
+        $("html, body").animate({ scrollTop: 0 }, "fast");
+      }
+    })
+  })

@@ -1,0 +1,106 @@
+- content_for :title,  "International Student Renters Insurance | Cosign International Student Lease"
+- insurance_type = request.fullpath.split("/")[-1].split("-")[0]
+- if insurance_type == "health"
+  - content_for :description, "Search for international student health insurance options available to international students studying in the US."
+- elsif insurance_type == "auto"
+  - content_for :description, "Search for auto insurance options available to international students studying in the US who own or rent a car."
+- else
+  - content_for :description, "Search for renters insurance and lease guarantor options for international students or visa holders living in the US."
+
+.container-fluid
+  #home-section-1.renters-insurance-header.home-section
+    .row
+      .col-md-12
+        %h1{ style: 'text-align:center'}
+          %br
+          Find the coverage that you need.      
+        #header-button{ style: 'text-align:center'}
+          %a{href: new_user_registration_path + "?application_type=renters_insurance", class: 'btn btn-success btn-lg'}
+            Click Here to Find
+            %br.mobile-break
+            Your Renters Insurance Options          
+  #home-section-2.home-section
+    .row
+      .col-md-8.offset-md-2.col-10.offset-1
+        %h3 RENTERS INSURANCE
+        %p Nomad Credit connects customers with potential renters insurers based on the search profile they fill out on our platform. Regardless of age or citizenship, everyone could use renters insurance. Insuring your property can protect you in the event of theft or natural disasters. Additionally, many landlords require a cosigner on a lease. This can be difficult for international students to attain. Through our partners, we can help provide the necessary renters insurance products to make sure that you have the right coverage. Once you see your options, Nomad Credit will be there to help you through the process and answer any questions that you may have.
+
+
+
+  #home-section-4.home-section
+    .row
+      .col-md-12
+        %h3 GET STARTED
+        #so-easy
+          .row
+            .col-md-3
+              .row
+                .col-2
+                  .count 1
+                .col-10
+                  %h4 Create an Account
+                  %p
+                    %a{href: "/users/sign_up", style: "text-decoration:underline;color:white"} Sign Up
+                    and Sign In.
+            .col-md-3
+              .row
+                .col-2
+                  .count 2
+                .col-10
+                  %h4 Search
+                  %p
+                    Fill out our 1 page search profile.
+            .col-md-3
+              .row
+                .col-2
+                  .count 3
+                .col-10
+                  %h4 Get Options
+                  %p
+                    We will notify you of
+                    renters insurance options that fit your profile.
+
+
+            .col-md-3
+              .row
+                .col-2
+                  .count 4
+                .col-10
+                  %h4 Get Support
+                  %p
+                    We will follow up to answer any questions that you may have regarding your renters insurance options.
+  #home-section-3.home-section
+    .row
+      .col-md-8.offset-md-2
+        %h3 WHY NOMAD CREDIT?
+        #why-unifi
+          .row
+            .col-md-8.offset-md-2
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Options available for non-U.S. and U.S. citizens
+              .margin-10
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Options available for students
+              .margin-10                                
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Quick and easy search – 1 page
+              .margin-10              
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Personalized help for any questions that may come up throughout the process
+%script{ type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-593f865fe238afcc"}

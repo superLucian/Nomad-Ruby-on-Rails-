@@ -1,0 +1,71 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-4.offset-md-4
+        .card.form-card
+          .card-header
+            %h2.login-header Create Your Account
+
+
+          .card-block
+            .row
+              .col-md-12
+                = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+                  = f.hidden_field :application_type, value: params[:application_type]
+                  = f.hidden_field :referral_source, value: (cookies[:referral_source] || params[:referral_source])
+                  - if alert || notice || devise_error_messages!
+                    .row
+                      .col-md-12
+                        - if notice
+                          .alert.alert-warning
+                            = notice
+                        - else
+                          .alert.alert-danger
+                            = alert
+                            = devise_error_messages!
+                  #new-user-step-1.active-section        
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :email
+                          = f.email_field :email, autofocus: true, class: 'form-control', validate: true
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.check_box :terms_of_service, validate: true
+                          I have read and agree to Nomad Credit's 
+                          %a{ href: "/terms", target: "_blank", style: "text-decoration:underline"}
+                            Terms of Use
+                          and
+                          = link_to "Privacy Policy", asset_path("privacy.pdf"), target: "_blank", style: "text-decoration:underline"                         
+
+                    .row
+                      .col-md-12
+                        = link_to "Continue", "#", class: 'btn btn-success', id: "new-user-continue"
+
+                  #new-user-step-2{style: 'display:none'}         
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :password, "Password (#{@minimum_password_length} characters minimum)"
+                          = f.password_field :password, autocomplete: "off", class: 'form-control', validate: true
+
+                                                                          
+
+                    .row
+                      .col-md-12
+                        = link_to "Sign Up", "#", class: 'btn btn-success', id: "sign-up-btn"
+
+                  .row
+                    .col-md-12
+                      Search for potential lending partners by creating an account.
+                      %p Already have an account?
+                      = link_to "Sign In", new_session_path(resource_name)
+                      
+
+:javascript
+  $(function(){
+    registration()
+  })

@@ -1,0 +1,38 @@
+= content_for :head do
+  %tr
+    %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+      Hello,
+      %br/
+      %br/
+      As the CEO of Nomad Credit, I’d like to thank you for coming to Nomad Credit to search for loan options. Nomad Credit wants to help you through your loan search.
+      %br/
+      %br/
+      Can you please let us know how we can help you? We can help you search for loan options and/or introduce you to those options.
+      %br/
+      %br/
+      We look forward to helping you with your loan search.
+      %br/
+      %br/      
+  %tr
+    %td
+      %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180"}
+        %tr
+          %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+            %a{href: email_url(dashboard_url, @ga_campaign), style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} Start Your Search Now
+
+= content_for :footer do
+  %br/
+  Sincerely,
+  %br/
+  %br/
+  Brian Hoffman
+  %br/
+  Nomad Credit, Founder & CEO
+  %br/
+  %a{ href: "mailto:CEO@nomadcredit.com"} CEO@nomadcredit.com
+  %br/
+  %a{ href: "https://wwwn.nomadcredit.com"} www.nomadcredit.com
+  %br/
+
+
+= render partial: 'shared/email_layout'

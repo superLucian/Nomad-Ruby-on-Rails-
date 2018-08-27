@@ -1,0 +1,4 @@
+- if @application.application_type.include?('insurance')
+  = render 'applications/insurance_form'
+- else
+  = render 'applications/form'

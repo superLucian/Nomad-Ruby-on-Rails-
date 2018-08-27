@@ -1,0 +1,20 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-10.offset-md-1
+        .card.form-card
+          .card-header
+            %h2.login-header Confirmation
+          .card-block
+            - if @application.application_type.include?("insurance")
+              = render "insurance_preview"
+            - else
+              = render "other_preview"
+            %br
+            .row
+              .col-md-8.offset-md-2.col-sm-12.col-xs-12
+                .row
+                  .col-md-6.col-sm-12.col-xs-12
+                    = link_to 'Edit Search', edit_application_path(@application), class: 'btn btn-danger col-md-8 col-sm-12 col-xs-12 offset-md-4', style: 'margin-bottom:20px'
+                  .col-md-6.col-sm-12.col-xs-12
+                    = link_to 'Submit Search', confirm_path(@application.id), method: :post, class: 'btn btn-success col-md-8 col-sm-12 col-xs-12', style: 'margin-bottom:20px'

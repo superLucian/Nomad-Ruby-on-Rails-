@@ -1,0 +1,86 @@
+.row
+  .col-md-8.offset-md-2
+    .card
+      .card-header{style: 'text-align:center'}
+        %h3 Information
+      .card-block
+        %table.table.table-striped.table-responsive
+          %tbody
+            - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                  
+
+              %tr
+                %td
+                  %strong First Name:
+                %td= @application.first_name
+            - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                  
+
+              %tr
+                %td
+                  %strong Last Name:
+                %td= @application.last_name
+            - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                  
+
+              %tr
+                %td
+                  %strong Email Address:
+                %td= @application.email
+            - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                  
+
+              %tr
+                %td
+                  %strong Phone Number:
+                %td= @application.phone_number
+
+            - if ["student_loan_refinancing"].include?(@application.application_type)         
+
+              %tr
+                %td
+                  %strong Date of Birth:
+                %td= @application.dob && @application.dob.strftime("%m/%d/%Y")
+
+            - if ["student_loan_refinancing","auto_loan"].include?(@application.application_type) 
+              %tr
+                %td
+                  %strong Citizenship Status:
+                %td= @application.citizenship_status
+
+            - if ["auto_loan","credit_card"].include?(@application.application_type)
+              %tr
+                %td
+                  %strong Visa Type:
+                %td= @application.visa_type
+            - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)            
+              %tr
+                %td
+                  %strong Country of Citizenship:
+                %td= @application.home_country
+            - if ["student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                              
+              %tr
+                %td
+                  %strong Country of Residence:
+                %td= @application.current_country
+            - if @application.application_type == 'student_loan'
+              %tr
+                %td
+                  %strong Cosigner:
+                - has_cosigner = @application.has_cosigner == 'foreign' || @application.has_cosigner == 'domestic'
+                %td= @application.has_cosigner.to_s.capitalize
+            %tr
+              %td
+                %strong School:
+              %td= @application.school                
+            - if ["student_loan","personal_loan", "student_loan_refinancing"].include?(@application.application_type)
+              %tr
+                %td
+                  %strong Level of School:
+                %td= @application.degree_type
+            - if ["student_loan_refinancing"].include?(@application.application_type)               
+              %tr
+                %td
+                  %strong Graduation Date:
+                %td= @application.expected_graduation                                                                     
+            - if ["student_loan_refinancing"].include?(@application.application_type)
+              %tr
+                %td
+                  %strong Employment Status:
+                %td= @application.employment_status

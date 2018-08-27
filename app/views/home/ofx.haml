@@ -1,0 +1,32 @@
+- content_for :title,  "International Payments to Send Money Overseas"
+- content_for :description, "International payments at competitive rates for international students and visa holders to send or receive money overseas to and from friends and family."
+
+.container-fluid
+  #home-section-1.ofx-header.home-section
+    .row
+      .col-md-8.offset-md-2
+        %h1{ style: 'text-align:center'}
+          %br
+          Quickly send money overseas.   
+        #header-button{ style: 'text-align:center'}
+          = link_to 'Send Money Now', "https://www.ofx.com/en-us/p/nomad?pid=5378", class: 'btn btn-success btn-lg', onclick: "gaOutboundLink('ofxStatic','https://www.ofx.com/en-us/p/nomad?pid=5378'); return false;"
+  #home-section-2.home-section{style: 'background-color:#f6f6f6;margin:0;padding: 50px 0'}
+    .row
+      .col-md-8.offset-md-2.col-10.offset-1
+        %h3 INTERNATIONAL PAYMENTS
+        %p Sending money to your friends and family at home shouldn’t be painful. Our foreign exchange partner OFX has a quick, easy platform for making international payments at competitive rates.
+
+  #home-section-3.home-section{style: 'background-color:white'}
+    .row
+      .col-md-8.offset-md-2
+        %h3 EXCHANGE RATES
+        #why-unifi
+          .row
+            .col-md-8.offset-md-2{style: 'text-align:center'}
+              %iframe{ frameborder: "0", height: "450", src: "https://au.ofx.com/Partner-Tools/Current-Exchange-Rates/OFX/?style=b&pid=5378", scrolling: "no", width: "255"}
+              %br
+              %span{ style: "font-size:10px;font-family:Arial"}
+                More 
+                %a{ href: "https://www.ofx.com/en-au/exchange-rates?pid=5378", target: "_blank", rel: "nofollow"}Exchange Rates
+
+%script{ type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-593f865fe238afcc"}

@@ -1,0 +1,21 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	<url>
+		<loc>https://blog.nomadcredit.com/international-students-stem-shortage-video-blog/</loc>
+		<video:video>
+			<video:thumbnail_loc>https://i.ytimg.com/vi/vaBRXb10gos/1.jpg?time=1498621406572	</video:thumbnail_loc>
+			<video:title>International Students: The STEM Shortage in the U.S.</video:title>
+			<video:description>Nate from Nomad Credit explains the STEM shortage in the U.S. and how that may affect international students ability to gain a job. Many international students coming to study in the U.S. choose to pursue a Masters of Science degree. This can be a good choice, partly because the chances to gain employment after graduating are high. One reason for this is that there is a shortage of STEM majors in the U.S. As technology and the sciences continue to grow, the jobs that correspond with those industries are also growing. Furthermore, this shortage is not going away. As of 2014-2015, there were an additional 230,246 STEM jobs and yet only 30,835 additional STEM graduates. STEM graduates are in hot demand. To see more information about the STEM shortage view our blog post: https://blog.nomadcredit.com/international-students-job-prospects-for-a-masters-of-science-degree/ Want to find education loan options for student visa holders in the US, both F1 and J1 Visa holders? Come visit us at www.nomadcredit.com/student-loans to find your education loan options today.</video:description>
+			<video:player_loc allow_embed="yes" autoplay="ap=1">https://www.youtube.com/embed/vaBRXb10gos</video:player_loc>
+			<video:publication_date>2017-06-27</video:publication_date>
+			<video:duration>79</video:duration>
+			<video:tag>international students</video:tag>
+			<video:tag>education loans</video:tag>
+			<video:tag>STEM</video:tag>
+			<video:tag>STEM Shortage</video:tag>
+			<video:tag>US University</video:tag>
+			<video:tag>F1 Visa</video:tag>
+			<video:tag>J1 Visa</video:tag>
+			<video:category>Education/video:category>
+		</video:video>
+	</url>

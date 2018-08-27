@@ -1,0 +1,115 @@
+- content_for :title,  "International Student Loan | International Education Loan"
+- content_for :description, "Search for and compare numerous student loan options without a cosigner for international students studying or planning to study at a US university."
+.container-fluid
+  #home-section-1.student-loan-header.home-section
+    .row
+      .col-md-8.offset-md-2
+        .margin-10
+        %h1{ style: 'text-align:center'}
+          Education Loan Options for Studying Abroad         
+        #header-button{ style: 'text-align: center'}
+          %a{href: new_user_registration_path + "?application_type=student_loan", class: 'btn btn-success btn-lg'}
+            Click Here to Find
+            %br.mobile-break
+            Your Education Loan Options
+  #home-section-2.home-section
+    .row
+      .col-md-8.offset-md-2.col-10.offset-1
+        %h3 EDUCATION LOANS FOR INTERNATIONAL STUDENTS IN THE U.S.
+        %p Nomad Credit connects international students with potential education loan lenders based on the search profile they fill out on our platform. Education loans (also known as student loans) can be difficult for an international student to find. Nomad Credit has partnered with different lenders in the United States and around the world that provide education loans to international students studying in the United States. Nomad Credit can point you in the right direction depending on your citizenship and ability to attain a cosigner. Having a creditworthy U.S. cosigner will maximize your options but a cosigner from your home country may also help if you lack a U.S. one. Simply Sign Up and start your education loan search today to get started. Once you see your options, Nomad Credit will be there to help you through the process and answer any questions that you may have.
+
+  #home-section-3.home-section#featured-section
+    .row
+      .col-md-8.offset-md-2.col-10.offset-1
+        %h3 FEATURED LENDER OF THE MONTH
+        .row
+          .col-md-3{style: 'text-align:center'}
+            %a{ href: "https://prodigyfinance.com/get-a-loan?utm_source=unifi&utm_medium=paidcontent&utm_content=get-a-loan&campaign_partner=unifi&utm_campaign=unifi-paidcontent-apr2017", onclick: "gaOutboundLink('partner-Prodigy','https://prodigyfinance.com/get-a-loan?utm_source=unifi&utm_medium=paidcontent&utm_content=get-a-loan&campaign_partner=unifi&utm_campaign=unifi-paidcontent-apr2017'); return false;"}
+              = image_tag 'prodigy.png', height: '120', style: 'margin-top:10px'
+          .col-md-9
+            %p Prodigy Finance offers no cosigner, no collateral loans to international students studying at the top Masters programs globally. The loan process is easy and 100% done online, from finding your school to signing your loan agreement. Fill out Nomad Credit’s loan search now to see if you are a good fit for an education loan from Prodigy Finance.
+
+
+
+  #home-section-4.home-section
+    .row
+      .col-md-12
+        %h3 GET STARTED
+        #so-easy
+          .row
+            .col-md-3
+              .row
+                .col-2
+                  .count 1
+                .col-10
+                  %h4 Create an Account
+                  %p
+                    %a{href: "/users/sign_up", style: "text-decoration:underline;color:white"} Sign Up
+                    and Sign In.
+            .col-md-3
+              .row
+                .col-2
+                  .count 2
+                .col-10
+                  %h4 Search
+                  %p
+                    Fill out our 1 page search profile.
+            .col-md-3
+              .row
+                .col-2
+                  .count 3
+                .col-10
+                  %h4 Get Options
+                  %p
+                    We will notify you of private education loan options that fit your profile.
+
+
+            .col-md-3
+              .row
+                .col-2
+                  .count 4
+                .col-10
+                  %h4 Get Support
+                  %p
+                    We will follow up to answer any questions that you may have regarding your private education loan options.
+
+  #home-section-3.home-section
+    .row
+      .col-md-8.offset-md-2
+        %h3 WHY NOMAD CREDIT?
+        #why-unifi
+          .row
+            .col-md-8.offset-md-2
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Options available for non-U.S. and U.S. citizens
+              .margin-10
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Options available for those without a cosigner
+
+              .margin-10              
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p          
+                    Quick and easy search – 1 page
+
+              .margin-10              
+              .row
+                .col-md-1
+                  %i.fa.fa-check-square-o
+                .col-md-11
+                  %p
+                    Personalized help for any questions that may come up throughout the process
+              
+
+%script{ type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-593f865fe238afcc"}
+          

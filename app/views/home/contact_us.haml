@@ -1,0 +1,67 @@
+- content_for :title, "Education Loans | Credit Cards | Medical Insurance"
+- content_for :description, "Search for and compare student loans, education loans, auto loans, personal loans, student medical insurance, credit cards & FX payments options for international students and visa holders."
+.container-fluid.contact-container
+	#home-section-1.home-section
+		.row
+			.col-md-12
+				%h2{ style: 'text-align:center;margin: 35px 0'}
+					Contact Us
+	#contact-us-container
+		.row
+			.col-md-4.offset-md-4
+				- if params["event"] != "messageSent"
+					.alert.alert-danger{ style: 'display:none' }
+		.row
+			.col-md-4.offset-md-4
+				- if params["event"] == "messageSent"
+					.alert.alert-success
+						Thank you for your message. Our team will be in touch with you soon.			
+				- else
+					= form_tag "/contact_messages" do
+						= hidden_field_tag :referral_source, (cookies[:referral_source] || params[:referral_source])
+						.active-section
+							.row
+								.col-md-6
+									= label_tag :first_name, "First Name"
+									= text_field_tag :first_name, nil,  class: "form-control", validate: true
+								.col-md-6
+
+									= label_tag :last_name, "Last Name"
+									= text_field_tag :last_name, nil,  class: "form-control", validate: true
+							.row
+								.col-md-12
+									= label_tag :email_address, "Email Address"
+									= text_field_tag :email_address, nil,  class: "form-control", validate: true
+
+									= label_tag :phone_number, "Phone Number"
+									= text_field_tag :phone_number, nil,  class: "form-control", validate: true
+
+									= label_tag :product, "Financial Product Desired"
+									= select_tag :product, options_for_select([["Student Loan","student_loan"],["Student Loan Refinancing","student_loan_refinancing"],["Credit Card","credit_card"],["Personal Loan","personal_loan"],["Auto Loan","auto_loan"],["Health Insurance","health_insurance"],["Renters Insurance","renters_insurance"],["Travel Insurance","travel_insurance"],["Other","other"]]),  class: "form-control", validate: true
+
+									= label_tag :message, "How Can We Help You?"
+									= text_area_tag :message, nil, class: "form-control", validate: true
+
+							.row
+								.col-md-12{style: 'text-align:center'}
+									= submit_tag "SEND MESSAGE", class: "btn btn-secondary btn-send-message continue-btn"
+
+									%p{style: "color:white;margin-top:10px"} By providing your telephone number, you authorize Nomad Credit, and any financial institution that Nomad Credit believes might be a good match for your financial needs, to use an automated dialing device to call you at such number, including via prerecorded messages and text messages.  You may revoke this authorization by emailing help@nomadcredit.com or calling +1 (224) 307-5127.
+	%br
+	%br
+	%br
+	%br
+- if Rails.env.production? == true && ENV["STAGING"] != "true" && params["event"] == "messageSent"
+	:javascript 
+		/* <![CDATA[ */
+		var google_conversion_id = 853611455;
+		var google_conversion_language = "en";
+		var google_conversion_format = "3";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "rwFYCLHwkHQQv6eElwM"; var google_remarketing_only = false;
+		/* ]]> */
+  
+	%script{ type:"text/javascript", src: "//www.googleadservices.com/pagead/conversion.js"}
+	%noscript
+		%div{ style: "display:inline;"}
+			%img{height: "1", width: "1", style: "border-style:none;", alt: "", src: "//www.googleadservices.com/pagead/conversion/853611455/?label=rwFYCLHwkHQQv6eElwM&amp;guid=ON&amp;script=0"}             

@@ -1,0 +1,101 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-6.offset-md-3
+        .card.form-card
+          .card-header
+            %h2.login-header= @application.application_type.split('_')[0].capitalize + ' Insurance'
+          .card-block
+            .row
+              .col-md-12
+                .row
+                  .col-md-12
+                    .alert.alert-danger{ style: 'display:none' }
+                      / = alert || notice
+            .row
+              .col-md-12
+                - @url = (params[:action] == 'new' ? applications_path : application_path(params[:id]))
+                - @http = (params[:action] == 'new' ? :post : :patch)                  
+                = form_for @application, url: @url, method: @http do |f|
+                  = f.hidden_field :application_type, value: @application.application_type || params[:application_type]
+                  = f.hidden_field :phone_country_code, value: @application.phone_country_code
+
+                  #financial-info.active-section{ style: 'display:block'}
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :first_name, 'First Name'
+                          = f.text_field :first_name, value: current_user.first_name, class: 'form-control', validate: true
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :last_name, 'Last Name'
+                          = f.text_field :last_name, value: current_user.last_name, class: 'form-control', validate: true
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :email
+                          = f.email_field :email, value: current_user.email, class: 'form-control', validate: true
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :phone_number
+                          = f.text_field :phone_number, value: @application.phone_number, class: 'form-control', validate: true 
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :citizenship_status, 'Citizenship Status'
+                          = f.select :citizenship_status, options_for_select(['', 'US Citizen', 'Green Card', 'Visa'], @application.citizenship_status), {}, { class: 'form-control', validate: true }
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :visa_type, 'Visa Type'
+                          = f.select :visa_type, options_for_select(["","Work","F1","J1"], @application.visa_type), {}, { class: 'form-control', validate: true, autocomplete: "new-password" }
+
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :home_country, "Home Country"
+                          = f.select :home_country, options_for_select(countries, @application.home_country), {}, { class: 'form-control' , validate: true}
+
+                    .row
+                      .col-md-12
+                        .form-group
+                          = f.label :school, 'School'
+                          = f.text_field :school, value: @application.school, class: 'form-control', validate: true
+
+                    .row
+                      .col-md-12                        
+                        .form-group
+                          .btn.btn-success.col-6.offset-md-3.continue-btn#financial-continue
+                            Submit
+
+    .row
+      .col-md-6.offset-md-3
+        #need-help
+          .row
+            .col-md-10.offset-md-1{ style: 'text-align:center'}
+              %h2 Need Help?
+              %p 
+                = link_to "help@nomadcredit.com", "mailto:help@nomadcredit.com", style: "color:white;text-decoration:underline"              
+              %p Mon–Thu: 9am – 6pm CT 
+              %p Fri-Sun: 9am – 4pm CT
+- if Rails.env.production? == true && ENV["STAGING"] != "true"
+  :javascript 
+    /* <![CDATA[ */
+    var google_conversion_id = 853611455;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "wmD7CL2X9HEQv6eElwM"; var google_remarketing_only = false;
+    /* ]]> */
+  
+  %script{ type:"text/javascript", src: "//www.googleadservices.com/pagead/conversion.js"}
+  %noscript
+    %div{ style: "display:inline;"}
+      %img{height: "1", width: "1", style: "border-style:none;", alt: "", src: "//www.googleadservices.com/pagead/conversion/853611455/?label=wmD7CL2X9HEQv6eElwM&amp;guid=ON&amp;script=0"}              

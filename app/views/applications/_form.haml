@@ -1,0 +1,214 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-6.offset-md-3
+        .card.form-card
+          .card-header
+            %h2.login-header= @application.application_type.split("_").map { |w| w.capitalize }.join(" ")
+          .card-block
+            .row
+              .col-md-12
+                .row
+                  .col-md-12
+                    .alert.alert-danger{ style: 'display:none' }
+                      / = alert || notice
+
+
+
+
+ 
+            .row
+              .col-md-12
+                - url = (params[:action] == 'new' ? applications_path : application_path(params[:id]))
+                - http = (params[:action] == 'new' ? :post : :patch)                
+                = form_for @application, url: url, method: http do |f|
+                  = f.hidden_field :application_type, value: @application.application_type || params[:application_type]
+                  = f.hidden_field :phone_country_code, value: @application.phone_country_code
+                  = f.hidden_field :cosigner_phone_country_code, value: @application.cosigner_phone_country_code
+
+                  #financial-info.active-section{ style: 'display:block'}
+                    - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)                  
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :first_name, 'First Name'
+                            = f.text_field :first_name, value: current_user.first_name, class: 'form-control', validate: true
+
+                    - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :last_name, 'Last Name'
+                            = f.text_field :last_name, value: current_user.last_name, class: 'form-control', validate: true
+
+                    - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :email
+                            = f.email_field :email, value: current_user.email, class: 'form-control', validate: true
+
+                    - if ["student_loan", "student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :phone_number
+                            = f.text_field :phone_number, value: @application.phone_number, class: 'form-control', validate: true
+
+
+                    - if ["student_loan_refinancing"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :dob, "Date of Birth"
+                            = f.text_field :dob, class: 'form-control', validate: true, date: true, placeholder: "MM/DD/YYYY", value: (@application.dob && @application.dob.strftime("%m/%d/%Y"))
+
+
+                    - if ["student_loan_refinancing","auto_loan"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :citizenship_status, 'Citizenship Status'
+                            = f.select :citizenship_status, options_for_select(['', 'US Citizen', 'Green Card', 'Visa'], @application.citizenship_status), {}, { class: 'form-control', validate: true }
+
+                    - if ["personal_loan","credit_card"].include?(@application.application_type)
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :visa_type, 'Visa Type'
+                            = f.select :visa_type, options_for_select(["","Work","Study"], @application.visa_type), {}, { class: 'form-control', validate: true, autocomplete: "new-password" }
+
+
+                    - if ["student_loan", "student_loan_refinancing", "personal_loan","credit_card"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :home_country, "Country of Citizenship"
+                            = f.select :home_country, options_for_select(countries, @application.home_country), {}, { class: 'form-control', validate: true, autocomplete: "new-password" }                          
+
+                    - if ["student_loan_refinancing", "personal_loan","auto_loan","credit_card"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :current_country, "Country of Residence"
+                            = f.select :current_country, options_for_select(countries, @application.current_country), {}, { class: 'form-control', validate: true }
+
+                    - if ["student_loan", "student_loan_refinancing"].include?(@application.application_type)
+                      .row
+                        .col-md-12
+                          .radio-div
+                            = f.label :has_cosigner, "Do you have a Cosigner?"
+                            .radio
+                              %label
+                                = f.radio_button :has_cosigner, 'domestic', validate: true
+                                Yes, US Cosigner
+
+                            .radio
+                              %label
+                                = f.radio_button :has_cosigner, 'foreign'
+                                Yes, Cosigner in home country
+
+                            .radio
+                              %label
+                                = f.radio_button :has_cosigner, 'no'
+                                No
+
+
+                    - if @application.application_type == "student_loan"
+
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :school
+                            %p 
+                              %em Please select the actual school you are attending. If you do not know your school yet, please select "Still Deciding." If your school is not listed, please select "School Not Listed."
+                            = f.select :school, options_for_select(universities, @application.school),{}, { class: 'form-control', validate: true}            
+                    - else
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :school
+                            = f.text_field :school, class: 'form-control', validate: ["student_loan", "auto_loan", "credit_card","personal_loan", "student_loan_refinancing"].include?(@application.application_type)
+
+
+                    - if ["student_loan","personal_loan", "student_loan_refinancing"].include?(@application.application_type)
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :degree_type, "Level of School"
+                            = f.select :degree_type, grouped_options_for_select(degrees, @application.degree_type), {}, {class: 'form-control', validate: ["student_loan", "auto_loan", "credit_card","personal_loan", "student_loan_refinancing"].include?(@application.application_type)}
+
+
+                    - if ["student_loan_refinancing"].include?(@application.application_type)         
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :expected_graduation, "Graduation Date"
+                            = f.select :expected_graduation, options_for_select(graduation_periods(@application.application_type), @application.expected_graduation), {}, { class: 'form-control', validate: ["student_loan", "student_loan_refinancing", "auto_loan", "credit_card", "personal_loan"].include?(@application.application_type) }
+
+ 
+                    - if ["student_loan_refinancing"].include?(@application.application_type)
+
+                      .row
+                        .col-md-12
+                          .form-group
+                            = f.label :employment_status, "Employment Status"
+                            = f.select :employment_status, options_for_select(["","Full-time","Part-time","Self-employed","Unemployed","Other"], @application.employment_status), {}, { class: 'form-control', validate: ["student_loan", "student_loan_refinancing", "auto_loan", "credit_card", "personal_loan"].include?(@application.application_type) }
+
+                    %br
+ 
+                    .row
+                      .col-md-12                        
+                        .form-group{ style: 'margin-bottom:8px'}
+                          .btn.btn-success.col-6.offset-md-3.continue-btn#financial-continuex
+                            Search
+                          
+                        %p{ style: 'text-align:center;margin-top:0px'}
+                          *This is not an application for credit.
+    .row  
+      .col-md-6.offset-md-3
+        / .signup-bullets
+        /   .row
+        /     .col-md-1.check-col
+        /       %i.fa.fa-check
+        /     .col-md-11
+        /       %p.signup-bullet 
+        /         %strong Many lenders, great options.
+        /         Choose between fixed and variable rate loans, as well as deferred and interest-only repayment options for your school loans.
+        /   .row
+        /     .col-md-1.check-col
+        /       %i.fa.fa-check
+        /     .col-md-11           
+        /       %p.signup-bullet 
+        /         %strong Simple process. 
+        /         Complete one form in just a few minutes to access education loan options from multiple lenders.
+        /   .row
+        /     .col-md-1.check-col
+        /       %i.fa.fa-check
+        /     .col-md-11
+        /       %p.signup-bullet 
+        /         %strong Low rates. 
+        /         Fixed rates as low as 3.99% APR and variable rates as low as 2.78% APR with auto pay. Access special discounts from some lenders.
+
+        #need-help
+          .row
+            .col-md-10.offset-md-1{ style: 'text-align:center'}
+              %h2 Need Help?
+              %p 
+                = link_to "help@nomadcredit.com", "mailto:help@nomadcredit.com", style: "color:white;text-decoration:underline"
+              
+
+- if Rails.env.production? == true && ENV["STAGING"] != "true"
+  :javascript 
+    /* <![CDATA[ */
+    var google_conversion_id = 853611455;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "wmD7CL2X9HEQv6eElwM"; var google_remarketing_only = false;
+    /* ]]> */
+  
+  %script{ type:"text/javascript", src: "//www.googleadservices.com/pagead/conversion.js"}
+  %noscript
+    %div{ style: "display:inline;"}
+      %img{height: "1", width: "1", style: "border-style:none;", alt: "", src: "//www.googleadservices.com/pagead/conversion/853611455/?label=wmD7CL2X9HEQv6eElwM&amp;guid=ON&amp;script=0"}              

@@ -1,0 +1,49 @@
+= content_for :head do
+  %tr
+    %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+      Dear #{@application.first_name},
+      %br/
+      %br/
+      You have successfully submitted a
+      = @application_type
+      search. We will follow up shortly to see if you have any questions on your
+      = @application_type
+      search.
+      %br/
+      %br/
+      Please reach out with any questions that you may have to 
+      %a{ href: "mailto:help@nomadcredit.com", style: "color:blue;text-decoration:underline"}help@nomadcredit.com.
+      %br/
+      %br/
+  - if @application.application_offers.length > 0 || @likely_offers.length > 0
+    - if @application.application_offers.length > 0  
+      %tr
+        %td
+          %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180", style: "margin-bottom:15px"}
+            %tr
+              %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+                %a{href: offers_url(@application.id), style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} View Options
+    - if @likely_offers.length > 0  
+      %tr
+        %td
+          %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180"}
+            %tr      
+              %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+                %a{href: likely_offers_url, style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} View Other Likely Options                                 
+  - else
+    %tr
+      %td
+        %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180"}
+          %tr  
+            %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+              %a{href: dashboard_url(@application.user_id), style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} My Dashboard
+
+= content_for :footer do
+  %br/
+  Thank you,
+  %br/
+  %br/
+  Nomad Team
+  %br/
+
+= render partial: 'shared/email_layout'

@@ -1,0 +1,248 @@
+.row.page-wrap
+  .col-md-12
+    .row
+      .col-md-8.offset-md-2
+        %h2.wecome-back
+          ="Welcome back!"
+              
+
+        - if @likely_offers.length > 0
+
+          .card.dashboard-card
+            .card-header
+              %h5
+                See Your Likely Other Product Options Now
+                %i.fa.fa-plus-circle.hidden
+                %i.fa.fa-minus-circle             
+            .card-block
+              .row
+                .col-md-12
+                  %p 
+                    Congratulations! Based upon the information that you submitted in your previous search, you have other likely product options.
+
+
+
+              .row
+                .col-md-12
+                  .dashboard-button
+                    = link_to 'See Other Product Options Now', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'
+
+        .card.dashboard-card
+          .card-header
+            %h5
+              Student Loan
+              %i.fa.fa-plus-circle.hidden
+              %i.fa.fa-minus-circle             
+          .card-block
+            .row
+              .col-md-12
+                %p 
+                  Find funding for the education that you need.
+
+            .row
+              .col-md-12
+                .dashboard-button
+                  - application_1 = Application.where(user_id: current_user.id, application_type: 'student_loan').last
+                  - if application_1.nil? || application_1.editable?
+                    = link_to current_user.application_button('student_loan', current_user)[0], current_user.application_button('student_loan', current_user)[1], class: 'btn btn-success', style: 'margin-right:20px;margin-bottom:10px'
+                    - if @likely_offers.find_by(application_type: 'student_loan')
+                      = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'
+
+                  - else
+                    %p
+                      %strong Search Status:
+                      = application_1.status.humanize
+
+
+        .card.dashboard-card
+          .card-header
+            %h5
+              Student Loan Refinancing
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden              
+          .card-block.hidden
+            .row
+              .col-md-12
+                %p 
+                  Find options to refinance your existing student loans.
+
+                .dashboard-button
+                  - application_2 = Application.where(user_id: current_user.id, application_type: 'student_loan_refinancing').last
+                  - if application_2.nil? || application_2.editable?
+                    = link_to current_user.application_button('student_loan_refinancing', current_user)[0], current_user.application_button('student_loan_refinancing', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+                    - if @likely_offers.find_by(application_type: 'student_loan_refinancing')
+                      = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'                    
+                  - else
+                    %p
+                      %strong Search Status:
+                      = application_2.status.humanize                    
+        .card.dashboard-card
+          .card-header
+            %h5
+              Personal Loan
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden              
+          .card-block.hidden
+            .row
+              .col-md-12
+                %p 
+                  Find lending partners to get the cash that you need. 
+
+                .dashboard-button
+                  - application_3 = Application.where(user_id: current_user.id, application_type: 'personal_loan').last
+                  - if application_3.nil? || application_3.editable?
+                    = link_to current_user.application_button('personal_loan', current_user)[0], current_user.application_button('personal_loan', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+                    - if @likely_offers.find_by(application_type: 'personal_loan')
+                      = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success' 
+                  - else
+                    %p
+                      %strong Search Status:
+                      = application_3.status.humanize                         
+        .card.dashboard-card
+          .card-header
+            %h5
+              Auto Loan
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden              
+          .card-block.hidden
+            .row
+              .col-md-12
+                %p 
+                  Find auto loan options that fit your profile. 
+
+                .dashboard-button
+                  - application_4 = Application.where(user_id: current_user.id, application_type: 'auto_loan').last
+                  - if application_4.nil? || application_4.editable?
+                    = link_to current_user.application_button('auto_loan', current_user)[0], current_user.application_button('auto_loan', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+
+                    - if @likely_offers.find_by(application_type: 'auto_loan')
+                      = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'                     
+                  - else
+                    %p
+                      %strong Search Status:
+                      = application_4.status.humanize 
+
+        .card.dashboard-card
+          .card-header
+            %h5
+              Credit Card
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden              
+          .card-block.hidden
+            .row
+              .col-md-12
+                %p 
+                  Find credit card options that fit your profile. 
+
+                .dashboard-button
+                  - application_5 = Application.where(user_id: current_user.id, application_type: 'credit_card').last
+                  - if application_5.nil? || application_5.editable?
+                    = link_to current_user.application_button('credit_card', current_user)[0], current_user.application_button('credit_card', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+                    - if @likely_offers.find_by(application_type: 'credit_card')
+                      = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'                      
+                  - else
+                    %p
+                      %strong Search Status:
+                      = application_5.status.humanize 
+
+        .card.dashboard-card
+          .card-header
+            %h5
+              Insurance
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden
+          .card-block.hidden
+            .row
+              .col-md-12
+                %p{style: 'margin-bottom:10px'} Find options for the coverage you need. 
+
+            .row
+              .col-md-4
+                .card.insurance-card{ style: 'margin-bottom:15px'}
+                  .card-header
+                    %h5
+                      Health Insurance
+                  .card-block
+                    .row
+                      .col-md-12{style: 'text-align:center'}
+                        %p 
+                          / Insurance will cover your medical expenses in the United States. We have a large network of physicians and rates starting as low as $200/month.
+                        .dashboard-button
+                          - application_6 = Application.where(user_id: current_user.id, application_type: 'health_insurance').last
+                          - if application_6.nil? || application_6.editable?
+                            = link_to current_user.application_button('health_insurance', current_user)[0], current_user.application_button('health_insurance', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+                            - if @likely_offers.find_by(application_type: 'health_insurance')
+                              = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'                               
+                          - else
+                            %p
+                              %strong Search Status:
+                              = application_6.status.humanize                             
+              
+              .col-md-4
+                .card.insurance-card{ style: 'margin-bottom:15px'}
+                  .card-header
+                    %h5
+                      Travel Insurance
+                  .card-block
+                    .row
+                      .col-md-12{style: 'text-align:center'}
+                        %p 
+                          / Insurance will cover your medical expenses in the United States. We have a large network of physicians and rates starting as low as $200/month.
+                        .dashboard-button
+                          - application_7 = Application.where(user_id: current_user.id, application_type: 'travel_insurance').last
+                          - if application_7.nil? || application_7.editable?
+                            = link_to current_user.application_button('travelers_insurance', current_user)[0], current_user.application_button('travelers_insurance', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+
+                            - if @likely_offers.find_by(application_type: 'travelers_insurance')
+                              = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'                            
+                          - else
+                            %p
+                              %strong Search Status:
+                              = application_7.status.humanize                          
+              
+              .col-md-4
+                .card.insurance-card{ style: 'margin-bottom:15px'}
+                  .card-header
+                    %h5
+                      Renters Insurance
+                  .card-block
+                    .row
+                      .col-md-12{style: 'text-align:center'}
+                        %p 
+                          / Insurance will cover your medical expenses in the United States. We have a large network of physicians and rates starting as low as $200/month.
+                        .dashboard-button
+                          - application_8 = Application.where(user_id: current_user.id, application_type: 'renters_insurance').last
+                          - if application_8.nil? || application_8.editable?
+                            = link_to current_user.application_button('renters_insurance', current_user)[0], current_user.application_button('renters_insurance', current_user)[1], class: 'btn btn-success', style: 'margin-right: 20px;margin-bottom:10px'
+                            - if @likely_offers.find_by(application_type: 'renters_insurance')
+                              = link_to 'View Recommended Partners', likely_offers_path, style: 'margin-right:20px;margin-bottom:10px;', class: 'btn btn-success'
+
+                          - else
+                            %p
+                              %strong Search Status:
+                              = application_8.status.humanize
+        .card.dashboard-card
+          .card-header
+            %h5
+              Mortgage
+              %i.fa.fa-plus-circle
+              %i.fa.fa-minus-circle.hidden              
+          .card-block.hidden
+            .row
+              .col-md-12
+                - if Interest.find_by(user_id: current_user.id, category: "Mortgage")
+                  %p 
+                    At this time, we don’t offer mortgage options, however, we are planning to offer this soon. You've already indicated your interest, so we'll notify you when mortgage options become available.
+                - else
+                  %p 
+                    At this time, we don’t offer mortgage options, however, we are planning to offer this soon. Click below to be notified when mortgage options become available.
+                  .dashboard-button
+                    = button_to 'Notify Me When Available', create_interest_path(current_user) + "?interest=Mortgage", class: 'btn btn-success'
+
+:javascript
+  $(function(){
+    $('.dashboard-card > .card-header').on('click', function(){
+      $(this).parent().children('.card-block').toggleClass('hidden');
+      $(this).parent().find('i').toggleClass('hidden');
+    })
+  })                     

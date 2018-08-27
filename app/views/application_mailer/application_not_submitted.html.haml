@@ -1,0 +1,34 @@
+= content_for :head do
+  %tr
+    %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+      Dear #{@application.first_name},
+      %br/
+      %br/
+      Your
+      = @application_type
+      search hasn’t been completed and submitted. Please log back in to finish your search so that you can find a 
+      = @application_type
+      to fit your needs.
+      %br/
+      %br/
+      Please reach out with any questions that you may have to 
+      %a{ href: "mailto:help@nomadcredit.com", style: "color:blue;text-decoration:underline"}help@nomadcredit.com.
+      %br/
+      %br/
+
+  %tr
+    %td
+      %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180"}
+        %tr
+          %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+            %a{href: preview_url(@application.id), style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} Submit Search
+
+= content_for :footer do
+  %br/
+  Thank you,
+  %br/
+  %br/
+  Nomad Team
+  %br/
+
+= render partial: 'shared/email_layout'

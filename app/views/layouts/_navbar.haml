@@ -1,0 +1,97 @@
+%nav.navbar.navbar-toggleable-md.navbar-light
+  %button.navbar-toggler.navbar-toggler-right{ type: "button", "data-toggle" => "collapse", "data-target" => "#navbarSupportedContent", "aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation"}
+    %span.navbar-toggler-icon
+  %a.navbar-brand{ href: (current_user ? '/dashboard' : '/')}
+    = image_tag 'nomad.jpg', style: 'height:30px;position: relative;top: 0px;'
+
+  .collapse.navbar-collapse#navbarSupportedContent
+    %ul.navbar-nav.mr-auto
+      - if current_user.nil?
+        %li.nav-item
+          = link_to 'Home', '/', class: 'nav-link'
+        %li.nav-item.dropdown
+          %a.dropdown-toggle.nav-link{ type: 'button', id: 'dropdownMenu1', "data-toggle" => 'dropdown'}
+            Loans
+          .dropdown-menu
+            = link_to 'Student Loans', '/student-loans', class: 'dropdown-item'
+            = link_to 'Student Loan Refinancing', '/student-loan-refinancing', class: 'dropdown-item'
+            = link_to 'Credit Cards', '/credit-cards', class: 'dropdown-item'
+            = link_to 'Personal Loans', '/personal-loans', class: 'dropdown-item'
+            = link_to 'Auto Loans', '/auto-loans', class: 'dropdown-item'
+        %li.nav-item.dropdown
+          %a.dropdown-toggle.nav-link{ type: 'button', id: 'dropdownMenu2', "data-toggle" => 'dropdown'}
+            Insurance
+          .dropdown-menu
+            = link_to 'Health Insurance', '/health-insurance', class: 'dropdown-item'
+            = link_to "Travel Insurance", '/travelers-insurance', class: 'dropdown-item'           
+            = link_to 'Renters Insurance', '/renters-insurance', class: 'dropdown-item'          
+
+        %li.nav-item.dropdown
+          %a.dropdown-toggle.nav-link{ type: 'button', id: 'dropdownMenu3', "data-toggle" => 'dropdown'}
+            Company
+          .dropdown-menu
+            = link_to 'How it Works', '/how-it-works', class: 'dropdown-item'
+            = link_to 'Partners', '/partners', class: 'dropdown-item'            
+            = link_to 'FAQ', faq_path, class: 'dropdown-item'
+            = link_to 'About Us', about_us_path, class: 'dropdown-item'
+            = link_to 'Jobs', '/jobs', class: 'dropdown-item'
+                                  
+        %li.nav-item.mobile-nav           
+          = link_to 'Student Loans', '/student-loans', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Student Loan Refinancing', '/student-loan-refinancing', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Credit Cards', '/credit-cards', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Personal Loans', '/personal-loans', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Auto Loans', '/auto-loans', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Health Insurance', '/health-insurance', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to "Travel Insurance", '/travelers-insurance', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Renters Insurance', '/renters-insurance', class: 'nav-link'                    
+
+        %li.nav-item
+          = link_to 'Contact Us', '/contact-us', class: 'nav-link' 
+        %li.nav-item          
+          = link_to 'Forum', "https://discuss.nomadcredit.com", class: 'nav-link'
+        %li.nav-item                    
+          = link_to 'Blog', "https://blog.nomadcredit.com", class: 'nav-link'
+
+        %li.nav-item.mobile-nav 
+          = link_to 'How it Works', '/how-it-works', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Partners', '/partners', class: 'nav-link'          
+        %li.nav-item.mobile-nav 
+          = link_to 'FAQ', faq_path, class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'About Us', about_us_path, class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Jobs', '/jobs', class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Blog', "https://blog.nomadcredit.com", class: 'nav-link'
+        %li.nav-item.mobile-nav 
+          = link_to 'Forum', "https://discuss.nomadcredit.com", class: 'nav-link'                             
+      - else 
+        %li.nav-item
+          = link_to 'Home', dashboard_path, class: 'nav-link'      
+        %li.nav-item
+          = link_to 'FAQ', faq_path, class: 'nav-link'
+        %li.nav-item
+          = link_to 'About Us', about_us_path, class: 'nav-link'  
+        %li.nav-item
+          = link_to 'Contact Us', '/contact-us', class: 'nav-link'           
+        %li.nav-item
+          = link_to 'Forum', "https://discuss.nomadcredit.com", class: 'nav-link'
+        %li.nav-item
+          = link_to 'Blog', "https://blog.nomadcredit.com", class: 'nav-link' 
+                                   
+    %form.form-inline.my-2.my-lg-0
+      - if current_user
+        = link_to 'Sign Out', '/sign_out', class: 'btn btn-success my-2 my-sm-0'
+      - else
+        = link_to 'Sign In', new_user_session_path, class: 'btn btn-outline-success my-2 my-sm-0'
+        %span{ style: "margin-right: 10px"}
+        = link_to 'Sign Up', new_user_registration_path, class: 'btn btn-success my-2 my-sm-0'

@@ -1,0 +1,28 @@
+= content_for :head do
+  %tr
+    %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+      Hello,
+      %br/
+      %br/
+      Thank you for coming to Nomad Credit and signing up. What financial product are you searching for?
+      %br/
+      %br/
+      I would be glad to personally help you with your financial product search and answer any questions that you may have. Please respond directly to this email for personalized help or click the button below to start your search on your own. 
+      %br/
+      %br/
+  %tr
+    %td
+      %table{align: "left", border: "0", cellpadding: "0", cellspacing: "0", width: "180"}
+        %tr
+          %td.button_link{align: "center", bgcolor: "#ffffff", height: "30", "mc:edit" => "log3", style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; font-weight:bold; border:1px solid #dddddd; text-transform:uppercase;", valign: "middle"}
+            %a{href: dashboard_url(@user.id), style: "font-family: Helvetica, Arial, sans-serif; font-size:12px; line-height:14px; color:#333333; text-transform:uppercase; text-decoration:none; font-weight:bold;", target: "_blank"} Start Your Search Now
+
+= content_for :footer do
+  %br/
+  I look forward to hearing from you,
+  %br/
+  %br/
+  Nathan from Nomad Team
+  %br/
+
+= render partial: 'shared/email_layout'

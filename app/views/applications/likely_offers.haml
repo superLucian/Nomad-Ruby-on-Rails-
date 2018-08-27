@@ -1,0 +1,101 @@
+.row
+  .col-md-12.page-wrap
+    .row
+      .col-md-10.offset-md-1
+        - @likely_offers.each do |offer|
+        .card.form-card
+          .card-header
+            %h2.login-header Options
+          .card-block
+            .row
+              .col-md-10.offset-md-1
+                - if @application_offers.length > 0
+
+                  %p{style: 'margin:20px 0 10px 0;text-align:center;font-size:18px'} 
+                    Congratulations, 
+                    %strong= "#{@application.first_name}!"
+                  %p{style: 'margin-bottom:30px'}
+                    - provider_type = (@application.application_type.include?("insurance") ? "insurer" : "lender partner")
+                    = "The #{provider_type}s that may be a good fit for your"
+                    = @application.application_type.split("_").map { |w| w.capitalize }.join(" ")
+                    search are listed below. Please click "Select" next to the
+                    = provider_type
+                    that you would like to choose. You will then be taken to the 
+                    = "#{provider_type}’s"
+                    site where you can get more information and submit an application on their site. Please email any questions to
+                    %a{ href: "mailto:help@nomadcredit.com"}help@nomadcredit.com.
+                - else
+                  %p 
+                    Based upon the information that you submitted, we did not identify any 
+                    = @application.application_type.split("_").map { |w| w.capitalize }.join(" ")
+                    options that fit your profile at this time. We will reach out if this is a result of missing information in your search. In the meantime, you are eligible to search for other products. Please email any questions that you may have to 
+                    %a{ href: "mailto:help@nomadcredit.com"}help@nomadcredit.com.
+                  %div{style: 'text-align:center'} 
+                    %a{href: dashboard_path, class: 'btn btn-success', style: 'padding: 8px 40px;margin-top:20px'}
+                      Return to Dashboard to Search
+                      %br.mobile-break
+                      for Other Product Options
+
+
+            - @application_offers.each do |application_offer|
+              - offer = application_offer.offer
+              .row
+                .col-md-10.offset-md-1
+                  .card{style: 'margin-bottom:20px'}
+                    .card-header{ style: 'background-color: white;text-align:center'}
+                      - if offer.logo.present?
+                        = image_tag offer.logo.url, height: "60px"
+                      - else
+                        %h3= offer.company_name
+                    .card-block
+                      .offers-table
+                        .row
+                          .col-md-12
+                            - if offer.company_name
+                              .row.offer-row
+                                .col.col-md-5
+                                  %strong 
+                                    - if @application.application_type.include?("insurance")
+                                      Insurer:
+                                    - else
+                                      Lender Partner:
+                                .col.col-md-7= simple_format offer.company_name                        
+                            - if offer.description
+                              .row.offer-row
+                                .col.col-md-5
+                                  %strong Description:
+                                .col.col-md-7= simple_format offer.description
+                            .row
+                              .col-md-12{style: 'text-align:center'}
+                                = link_to 'SELECT', offer_clicked_path(@application) + "?offer_id=#{application_offer.id}", onclick: "gaOutboundLink('offerSelect" + "-#{offer.company_name}" + "','" + offer_clicked_path(@application.id) + "?offer_id=#{application_offer.id}" + "'); return false", class: 'btn btn-success offer-select-btn', target: "_blank"
+
+          .row
+            .col-md-10.offset-md-1{ style: 'text-align:center'}
+              %h3{style: 'font-weight:700;margin-bottom:20px'} Likely Options
+
+              .row
+                .col-md-12
+                  %p{ style: 'margin-bottom:20px'}
+                    Based on the information you provided, you might be qualified for other products. Click below to explore other offer without providing any additional info.
+
+              .row
+                .col-md-12{style: 'text-align:center'}
+                  = link_to 'Explore Other Likely Options', offer_clicked_path(@application), class: 'btn btn-success'
+          .row
+            .col-md-10.offset-md-1
+              - if @application_offers.length > 0
+                %div{style: 'text-align:center'} 
+                  %a{href: dashboard_path, class: 'btn btn-success', style: 'padding: 8px 40px;margin-top:20px'}
+                    Return to Dashboard to Search 
+                    %br.mobile-break
+                    for Other Product Options
+                %br
+                %br
+                
+:javascript 
+  $(function(){
+    $(".col-md-7 p").each(function(i, obj){
+      var newText = $(obj).html().autoLink({target: "_blank"});
+      $(obj).html(newText);
+    })
+  })

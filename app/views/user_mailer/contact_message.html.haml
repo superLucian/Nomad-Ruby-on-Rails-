@@ -1,0 +1,26 @@
+= content_for :head do
+  %tr
+    %td.desc_links{"mc:edit" => "logs2", style: "font-family: Helvetica, Arial, sans-serif; font-size:13px; line-height:18px; color:#333333;"}
+      Hi Nathan,
+      %br/
+      %br/
+      You have a new contact message:
+      %br
+      %br
+      First Name: #{@message.first_name}
+      %br
+      %br
+      Last Name: #{@message.last_name}      
+      %br
+      %br
+      Email Address: #{@message.email_address}
+      %br
+      %br
+      Phone Number: #{@message.phone_number}
+      %br
+      %br
+      Product: #{@message.product}
+      %br
+      %br
+      Message: #{@message.message}
+= render partial: 'shared/email_layout'

@@ -1,0 +1,12 @@
+#error_explanation h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.field_with_errors input.form-control, .field_with_errors select {
+  border: 1px solid red;
+}
+
+.field_with_errors label {
+  color: red;
+}

@@ -1,0 +1,41 @@
+.row
+  .col-md-8.offset-md-2
+    .card
+      .card-header{style: 'text-align:center'}
+        %h3 Information
+      .card-block
+        %table.table.table-striped.table-responsive
+          %tbody
+            %tr
+              %td
+                %strong First Name:
+              %td= @application.first_name
+            %tr
+              %td
+                %strong Last Name:
+              %td= @application.last_name
+            %tr
+              %td
+                %strong Email Address:
+              %td= @application.email
+            %tr
+              %td
+                %strong Phone Number:
+              %td= @application.phone_number                
+            %tr
+              %td
+                %strong Citizenship Status:
+              %td= @application.citizenship_status
+            %tr
+              %td
+                %strong Visa Type:
+              %td= @application.visa_type
+            %tr
+              %td
+                %strong Home Country:
+              %td= @application.home_country              
+                                                     
+            %tr
+              %td
+                %strong School:
+              %td= @application.school                                                     
